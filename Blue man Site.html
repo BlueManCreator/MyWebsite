@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue Man Creator</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"Comic Sans MS", cursive;
+    color:#FFD800;
+    background:#5387FF;
+    min-height:100vh;
+}
+
+/* Céu Cartoon */
+
+.sky{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background:linear-gradient(
+        to bottom,
+        #5387FF,
+        #6A97FF,
+        #88ACFF
+    );
+}
+
+.cloud{
+    position:absolute;
+    background:white;
+    border-radius:999px;
+}
+
+.cloud::before,
+.cloud::after{
+    content:"";
+    position:absolute;
+    background:white;
+    border-radius:50%;
+}
+
+.cloud1{
+    width:180px;
+    height:60px;
+    top:80px;
+    left:8%;
+}
+
+.cloud1::before{
+    width:80px;
+    height:80px;
+    left:20px;
+    top:-30px;
+}
+
+.cloud1::after{
+    width:90px;
+    height:90px;
+    right:20px;
+    top:-40px;
+}
+
+.cloud2{
+    width:220px;
+    height:70px;
+    top:200px;
+    right:10%;
+}
+
+.cloud2::before{
+    width:90px;
+    height:90px;
+    left:25px;
+    top:-35px;
+}
+
+.cloud2::after{
+    width:110px;
+    height:110px;
+    right:20px;
+    top:-50px;
+}
+
+.container{
+    width:min(1100px,90%);
+    margin:auto;
+    padding:50px 0;
+}
+
+.language-button{
+    position:fixed;
+    top:20px;
+    right:20px;
+    z-index:999;
+}
+
+.language-button button{
+    font-family:"Comic Sans MS", cursive;
+    font-size:1rem;
+    font-weight:bold;
+    color:#FFD800;
+    background:#3D6FE0;
+    border:4px solid white;
+    border-radius:20px;
+    padding:12px 20px;
+    cursor:pointer;
+}
+
+.language-menu{
+    display:none;
+    margin-top:8px;
+    background:#3D6FE0;
+    border:4px solid white;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.language-menu button{
+    width:100%;
+    border:none;
+    background:none;
+    color:#FFD800;
+    padding:12px;
+    cursor:pointer;
+}
+
+.language-menu button:hover{
+    background:rgba(255,255,255,0.15);
+}
+
+header{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+h1{
+    font-size:4rem;
+}
+
+.subtitle{
+    font-size:1.3rem;
+}
+
+section{
+    background:rgba(0,0,0,0.15);
+    padding:30px;
+    border-radius:25px;
+    margin-bottom:30px;
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+p{
+    line-height:1.8;
+    margin-bottom:15px;
+    font-size:1.15rem;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="sky">
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+</div>
+
+<div class="language-button">
+
+    <button onclick="toggleLanguages()">
+        🌎 Language
+    </button>
+
+    <div id="languageMenu" class="language-menu">
+        <button onclick="changeLanguage('en')">🇺🇸 English</button>
+        <button onclick="changeLanguage('pt')">🇧🇷 Português</button>
+        <button onclick="changeLanguage('es')">🇪🇸 Español</button>
+    </div>
+
+</div>
+
+<div class="container">
+
+<header>
+    <h1 id="title">Blue Man Creator</h1>
+    <p id="subtitle" class="subtitle"></p>
+</header>
+
+<section>
+    <h2 id="section1title"></h2>
+    <p id="section1text"></p>
+</section>
+
+<section>
+    <h2 id="section2title"></h2>
+    <p id="section2text"></p>
+</section>
+
+<section>
+    <h2 id="section3title"></h2>
+    <p id="section3text"></p>
+</section>
+
+<section>
+    <h2 id="section4title"></h2>
+    <p id="section4text"></p>
+</section>
+
+<footer id="footerText"></footer>
+
+</div>
+
+<script>
+
+function toggleLanguages(){
+    const menu = document.getElementById("languageMenu");
+
+    menu.style.display =
+        menu.style.display === "block"
+        ? "none"
+        : "block";
+}
+
+const translations = {
+
+en:{
+subtitle:"An indie developer trying to turn weird ideas into games.",
+section1title:"Who Am I?",
+section1text:"My developer name is Blue Man Creator. I am a beginner indie game developer using Godot to create games and learn game development.",
+section2title:"Game Quality",
+section2text:"I am still learning, so some projects may be simple, experimental, strange, or unfinished. Every project helps me gain experience.",
+section3title:"My Computer",
+section3text:"I currently use an entry-level PC. Because of this, ultra realistic graphics are not practical for my projects, so I focus on simpler and more stylized games.",
+section4title:"Goals",
+section4text:"My goal is to keep improving, learning programming, game design and creating larger and better projects over time.",
+footerText:"© Blue Man Creator | Powered by Godot, coffee and mysterious bugs."
+},
+
+pt:{
+subtitle:"Um desenvolvedor indie tentando transformar ideias estranhas em jogos.",
+section1title:"Quem Sou Eu?",
+section1text:"Meu nome de desenvolvedor é Blue Man Creator. Sou um desenvolvedor indie iniciante que utiliza a Godot para criar jogos e aprender desenvolvimento.",
+section2title:"Qualidade dos Jogos",
+section2text:"Ainda estou aprendendo, então alguns projetos podem ser simples, experimentais, estranhos ou inacabados. Cada projeto me ajuda a ganhar experiência.",
+section3title:"Meu Computador",
+section3text:"Atualmente utilizo um computador de entrada. Por isso gráficos ultra realistas não são viáveis, então foco em jogos mais simples e estilizados.",
+section4title:"Objetivos",
+section4text:"Meu objetivo é continuar evoluindo, aprendendo programação, design de jogos e criando projetos cada vez maiores.",
+footerText:"© Blue Man Creator | Movido por Godot, café e bugs misteriosos."
+},
+
+es:{
+subtitle:"Un desarrollador indie intentando convertir ideas extrañas en videojuegos.",
+section1title:"¿Quién Soy?",
+section1text:"Mi nombre de desarrollador es Blue Man Creator. Soy un desarrollador indie principiante que utiliza Godot para crear videojuegos.",
+section2title:"Calidad de los Juegos",
+section2text:"Todavía estoy aprendiendo, por lo que algunos proyectos pueden ser simples, experimentales, extraños o incompletos.",
+section3title:"Mi Computadora",
+section3text:"Actualmente utilizo una computadora básica. Debido a esto, los gráficos ultra realistas no son viables para mis proyectos.",
+section4title:"Objetivos",
+section4text:"Mi objetivo es seguir mejorando, aprendiendo programación, diseño de juegos y creando proyectos cada vez más grandes.",
+footerText:"© Blue Man Creator | Impulsado por Godot, café y errores misteriosos."
+}
+
+};
+
+function changeLanguage(lang){
+
+    document.documentElement.lang = lang;
+
+    document.getElementById("subtitle").textContent = translations[lang].subtitle;
+
+    document.getElementById("section1title").textContent = translations[lang].section1title;
+    document.getElementById("section1text").textContent = translations[lang].section1text;
+
+    document.getElementById("section2title").textContent = translations[lang].section2title;
+    document.getElementById("section2text").textContent = translations[lang].section2text;
+
+    document.getElementById("section3title").textContent = translations[lang].section3title;
+    document.getElementById("section3text").textContent = translations[lang].section3text;
+
+    document.getElementById("section4title").textContent = translations[lang].section4title;
+    document.getElementById("section4text").textContent = translations[lang].section4text;
+
+    document.getElementById("footerText").textContent = translations[lang].footerText;
+
+    localStorage.setItem("language", lang);
+}
+
+window.onload = () => {
+
+    const savedLanguage =
+        localStorage.getItem("language")
+        || "en";
+
+    changeLanguage(savedLanguage);
+
+};
+
+</script>
+
+</body>
+</html>
